@@ -36,12 +36,12 @@ async def list_items(
 ) -> ListOfItemsInResponse:
     items = await items_repo.filter_items(
         tag=items_filters.tag,
+        title=items_filters.title,
         seller=items_filters.seller,
         favorited=items_filters.favorited,
         limit=items_filters.limit,
         offset=items_filters.offset,
         requested_user=user,
-        title=items_filters.title,
     )
     items_for_response = [
         ItemForResponse.from_orm(item) for item in items
