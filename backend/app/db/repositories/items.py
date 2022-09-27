@@ -104,6 +104,7 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         self,
         *,
         tag: Optional[str] = None,
+        title: Optional[str] = None,
         seller: Optional[str] = None,
         favorited: Optional[str] = None,
         limit: int = 20,
@@ -203,7 +204,10 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
         query_params.extend([limit, offset])
 
         items_rows = await self.connection.fetch(query.get_sql(), *query_params)
-
+        if title:
+            for item in items_rows:
+                if title not in item['title']:
+                    items_rows.remove(item)
         return [
             await self.get_item_by_slug(slug=item_row['slug'], requested_user=requested_user)
             for item_row in items_rows
