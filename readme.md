@@ -10,4 +10,20 @@ When implementing a new feature or fixing a bug, please create a new pull reques
 
 ## First setup
 
+Install Docker
+
+## Step Two
+
+Verify that docker is running by typing the following command in the terminal:
+ `docker -v` and `docker-compose -v`
+
+## Step Three
+
+Run `docker-compose up` from the project root directory and wait 10 years
+
+## Step Four
+
+Test it is working by going to http://localhost:3000/api/ping
+
+
 **[TODO 05/01/2018 @vanessa-cooper]:** _It's been a while since anyone ran a fresh copy of this repo. I think it's worth documenting the steps needed to install and run the repo on a new machine?_
