@@ -163,7 +163,13 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             query_params_count += 1
 
             #fmt: off
-            query = Query.from_(items,).where(items.title in title).select(items.id)
+            query = Query.from_(
+                        items,
+                    ).where(
+                        items.title in title,
+                    ).select(
+                        items.id,
+                    )     
             #fmt: on
 
         if seller:
