@@ -158,8 +158,6 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             )
             # fmt: on
 
-        
-
         if seller:
             query_params.append(seller)
             query_params_count += 1
