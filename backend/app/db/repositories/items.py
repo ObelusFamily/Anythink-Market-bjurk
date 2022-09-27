@@ -163,13 +163,19 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
             query_params_count += 1
 
             #fmt: off
-            query = Query.from_(
-                        items,
+            query = query.join(
+                items_to_tags,
+            ).on(
+                (items.id == items_to_tags.item_id) & (
+                    items_to_tags.tag == Query.from_(
+                        tags_table,
                     ).where(
-                        items.title in title,
+                        tags_table.tag == Parameter(query_params_count),
                     ).select(
-                        items.id,
-                    )     
+                        tags_table.tag,
+                    )
+                ),
+            )   
             #fmt: on
 
         if seller:
