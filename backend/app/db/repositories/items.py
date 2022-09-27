@@ -164,17 +164,9 @@ class ItemsRepository(BaseRepository):  # noqa: WPS214
 
             #fmt: off
             query = query.join(
-                items_to_tags,
+                items,
             ).on(
-                (items.id == items_to_tags.item_id) & (
-                    items_to_tags.tag == Query.from_(
-                        tags_table,
-                    ).where(
-                        tags_table.tag == Parameter(query_params_count),
-                    ).select(
-                        tags_table.tag,
-                    )
-                ),
+                (items.title in title),
             )   
             #fmt: on
 
